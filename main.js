@@ -10,6 +10,7 @@ let total = 0; // Valor por defecto del total
 let purchaseBtn = document.querySelector(".purchaseBtn"); // Boton de COMPRAR
 let cartList = document.querySelector(".cartList"); // Lista de ITEMS
 let mainData = []; // Donde se almacena la DATA principal
+
 let moviePool = [
   "tt0848228",
   "tt0120338",
@@ -21,9 +22,21 @@ let moviePool = [
   "tt2543164",
   "tt0241527",
 ]; // Lista de PELICULAS
-let randomPrices = [12.99, 19.99, 20.10, 32.05, 9.99, 10.99, 4.99, 40.00, 45.99, 11.99]; // Precios random GENERABLES
+let randomPrices = [
+  12.99,
+  19.99,
+  20.1,
+  32.05,
+  9.99,
+  10.99,
+  4.99,
+  40.0,
+  45.99,
+  11.99,
+]; // Precios random GENERABLES
 
-function getAllMoviesData(arr = []) { // Se hace FETCH de los datos de cada una y se construye cada card dinámicamente
+function getAllMoviesData(arr = []) {
+  // Se hace FETCH de los datos de cada una y se construye cada card dinámicamente
   arr.forEach(async (v) => {
     const resp = await fetch(`http://www.omdbapi.com/?apikey=ec1b758c&i=${v}`);
     const data = await resp.json();
@@ -72,7 +85,8 @@ function loadRender() {
   purchaseBtn.addEventListener("click", purchaseFunc); // Evento de COMPRAR
 }
 
-function purchaseFunc() { // Funcion de COMPRAR
+function purchaseFunc() {
+  // Funcion de COMPRAR
   let numOfMovies = cartList.childElementCount;
   let finalTotal = Math.round(total * 100) / 100;
   if (numOfMovies === 1) {
@@ -106,6 +120,7 @@ function removeItem(e) {
   $ ${Math.round(total * 100) / 100}
 </h4>`;
   currentItem.remove();
+  document.querySelector(".priceBubble").innerHTML = cartList.childElementCount;
 }
 
 function addItem(e) {
@@ -120,6 +135,7 @@ function addItem(e) {
   let priceEl = currentItem.querySelectorAll(".item-price")[0].innerText;
   let priceNum = parseFloat(priceEl.replace("$", ""));
   total = total + priceNum;
+
   let newAdded = document.createElement("li");
   newAdded.classList.add(
     "list-group-item",
@@ -150,7 +166,7 @@ function addItem(e) {
   $ ${Math.round(total * 100) / 100}
 </h4>`;
 
-console.log(cartList.children);
+  document.querySelector(".priceBubble").innerHTML = cartList.childElementCount;
 }
 
 getAllMoviesData(moviePool); // Llamar los datos de las peliculas a partir del Array creado
