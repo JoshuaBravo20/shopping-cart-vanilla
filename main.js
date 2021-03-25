@@ -21,7 +21,7 @@ let moviePool = [
   "tt2543164",
   "tt0241527",
 ]; // Lista de PELICULAS
-let randomPrices = [12.99, 19.99, 20.10, 32.50, 9.99, 10.50, 4.99, 50.0, 45.99, 100.99]; // Precios random GENERABLES
+let randomPrices = [12.99, 19.99, 20.10, 32.05, 9.99, 10.99, 4.99, 40.00, 45.99, 11.99]; // Precios random GENERABLES
 
 function getAllMoviesData(arr = []) { // Se hace FETCH de los datos de cada una y se construye cada card dinámicamente
   arr.forEach(async (v) => {
@@ -29,10 +29,9 @@ function getAllMoviesData(arr = []) { // Se hace FETCH de los datos de cada una 
     const data = await resp.json();
 
     let newMovie = document.createElement("div");
-    newMovie.classList.add('col-4');
     newMovie.innerHTML = `
-    <div class='col-4'>
-    <div class="card itemCard " style="width: 18rem;">
+    <div class='col-4 '>
+    <div class="card itemCard ml-4" style="width: 18rem;">
     <div class="card-body">
         <img src=${data.Poster} class="imageIcon1" />
         <h5 class="card-title d-flex justify-content-center text-yellow mt-3 item-title">${
@@ -43,9 +42,8 @@ function getAllMoviesData(arr = []) { // Se hace FETCH de los datos de cada una 
         }, <strong>Year</strong>: ${data.Year}
         </p>
         <div style="margin-top: 20px">
-        <button class="btn btn-primary rounded-pill addButton" onClick="addItem();">Add to Cart</button>
-        <span class="bg-success rounded-pill text-white p-3 ml-3 item-price"><i
-                class="fas fa-money-bill-wave"></i>
+        <button class="btn btn-primary rounded-pill addButton" onClick="addItem();"><i class="fas fa-plus-circle"></i> Add to Cart</button>
+        <span class="bg-success rounded-pill text-white p-2 ml-2 item-price"><i class="fas fa-coins"></i>
             $${
               randomPrices[Math.floor(Math.random() * randomPrices.length)]
             }</span>
@@ -55,6 +53,7 @@ function getAllMoviesData(arr = []) { // Se hace FETCH de los datos de cada una 
 </div>`;
     newMovie.querySelector(".addButton").addEventListener("click", addItem);
     mainContainer.append(newMovie);
+    cartImg = data.poster;
   });
 }
 
@@ -77,12 +76,14 @@ function purchaseFunc() { // Funcion de COMPRAR
   let numOfMovies = cartList.childElementCount;
   let finalTotal = Math.round(total * 100) / 100;
   if (numOfMovies === 1) {
+    playCashRegisterSound();
     alert(
       `Congrats! You've purchased ${numOfMovies} movie, your total was $${finalTotal}`
     );
     window.location.reload();
   }
   if (numOfMovies > 0 && numOfMovies !== 1) {
+    playCashRegisterSound();
     alert(
       `Congrats! You've purchased ${numOfMovies} movies, your total was $${finalTotal}`
     );
@@ -96,6 +97,7 @@ function removeItem(e) {
   let currentItem = btnClicked.parentElement.parentElement;
   let priceEl = currentItem.querySelectorAll(".item-price")[0].innerText;
   let priceNum = parseFloat(priceEl.replace("$", ""));
+  currentItem.classList.add("animate__animated", "animate__bounceOutDown");
   total = total - priceNum;
   totalForCart.innerHTML = `<h4 class=" cartTotal text-white mt-3 mb-2 bg-blue rounded-pill ml-2 d-flex justify-content-start w-75">
   <i class="fas fa-wallet"></i>
@@ -103,7 +105,6 @@ function removeItem(e) {
   Total
   $ ${Math.round(total * 100) / 100}
 </h4>`;
-  currentItem.classList.add("animate__animated", "animate__bounceOutDown");
   currentItem.remove();
 }
 
@@ -132,7 +133,7 @@ function addItem(e) {
   ${description}
 </div>
 <div class="col-2">
-  <span class="bg-success text-white p-2 rounded-pill px-4 item-price"> <i class="fas fa-money-bill-wave"> &nbsp;
+  <span class="bg-success text-white p-2 rounded-pill px-4 item-price"> <i class="fas fa-coins"></i> &nbsp;
       </i>${priceEl}</span>
 </div>
 <div class="col-2">
@@ -148,10 +149,14 @@ function addItem(e) {
   Total
   $ ${Math.round(total * 100) / 100}
 </h4>`;
+
+console.log(cartList.children);
 }
 
-getAllMoviesData(moviePool); // Llamar los datos de las peliculas dadsa
+getAllMoviesData(moviePool); // Llamar los datos de las peliculas a partir del Array creado
 
-fetch("http://www.omdbapi.com/?apikey=ec1b758c&i=tt0120338")
-.then(resp => resp.json())
-.then(data => console.log(data))
+let cashSound = new Audio("/cash.wav");
+
+function playCashRegisterSound() {
+  cashSound.play();
+}
