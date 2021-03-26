@@ -45,7 +45,7 @@ body {
   width: 300px !important;
 }
 
-.priceBubble {
+.quantityBubble {
   border: 2px solid white !important;
   background-color: red;
   height: 30px;

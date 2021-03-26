@@ -120,7 +120,7 @@ function removeItem(e) {
   $ ${Math.round(total * 100) / 100}
 </h4>`;
   currentItem.remove();
-  document.querySelector(".priceBubble").innerHTML = cartList.childElementCount;
+  document.querySelector(".quantityBubble").innerHTML = cartList.childElementCount;
 }
 
 function addItem(e) {
@@ -166,7 +166,7 @@ function addItem(e) {
   $ ${Math.round(total * 100) / 100}
 </h4>`;
 
-  document.querySelector(".priceBubble").innerHTML = cartList.childElementCount;
+  document.querySelector(".quantityBubble").innerHTML = cartList.childElementCount;
 }
 
 getAllMoviesData(moviePool); // Llamar los datos de las peliculas a partir del Array creado
