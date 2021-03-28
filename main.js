@@ -42,6 +42,7 @@ function getAllMoviesData(arr = []) {
     const data = await resp.json();
 
     let newMovie = document.createElement("div");
+    newMovie.classList.add("ml-4");
     newMovie.innerHTML = `
     <div class='col-4 '>
     <div class="card itemCard ml-4" style="width: 18rem;">
@@ -149,11 +150,11 @@ function addItem(e) {
   ${description}
 </div>
 <div class="col-2">
-  <span class="bg-success text-white p-2 rounded-pill px-4 item-price"> <i class="fas fa-coins"></i> &nbsp;
+  <span class="bg-success text-white p-2 rounded-pill px-4 item-price"> <i class="fas fa-coins"></i> 
       </i>${priceEl}</span>
 </div>
 <div class="col-2">
-  <button class="btn btn-danger btn-md text-white rounded-pill px-4 deleteButton">REMOVE</button>
+  <button class="btn btn-danger btn-md text-white rounded-pill px-4 deleteButton"><i class="fas fa-minus-circle"></i> REMOVE</button>
 </div>`;
 
   cartList.appendChild(newAdded);
@@ -167,6 +168,10 @@ function addItem(e) {
 </h4>`;
 
   document.querySelector(".quantityBubble").innerHTML = cartList.childElementCount;
+  document.querySelector(".quantityBubble").classList.add("animate__bounce", "animate__fast");
+  document.querySelector(".quantityBubble").addEventListener("animationend", () => {
+    document.querySelector(".quantityBubble").classList.remove("animate__bounce", "animate__fast");
+  })
 }
 
 getAllMoviesData(moviePool); // Llamar los datos de las peliculas a partir del Array creado
