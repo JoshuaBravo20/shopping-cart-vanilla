@@ -1,7 +1,12 @@
 ### UPDATE 30 / 03/ 21 - Added floating (clickable) cart, animations and shadows.
 
-This is a simple Shopping Cart made with Vanilla JS, HTML and CSS3.
+- Added a floating clickable version of the cart.
+- Added CSS animations
+- Added shadows
+- Optimized background and color scheme
 
+
+Made with Vanilla JS, HTML5 and CSS3. © Joshua Bravo 2021
 
 
 
