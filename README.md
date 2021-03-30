@@ -1,4 +1,4 @@
-### UPDATE 30 / 03/ 21 - Added floating (clickable) cart, animations and shadows.
+### UPDATE 30 / 03/ 21 
 
 - Added a floating clickable version of the cart.
 - Added CSS animations
