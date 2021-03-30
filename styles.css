@@ -5,7 +5,17 @@
 }
 
 body {
-  background: rgb(63, 186, 202) !important;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(88, 183, 191, 1) 0%,
+    rgba(103, 144, 182, 1) 100%,
+    rgba(145, 39, 157, 1) 100%,
+    rgba(13, 26, 227, 0.9906337535014006) 100%,
+    rgba(55, 57, 7, 1) 100%,
+    rgba(7, 187, 167, 1) 100%
+  );
 }
 
 .mainTitle {
@@ -15,6 +25,20 @@ body {
 
 .bg-blue {
   background-color: rgb(45, 45, 179) !important;
+}
+.bg-navbar {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(88, 183, 191, 1) 0%,
+    rgba(103, 144, 182, 1) 100%,
+    rgba(145, 39, 157, 1) 100%,
+    rgba(13, 26, 227, 0.9906337535014006) 100%,
+    rgba(55, 57, 7, 1) 100%,
+    rgba(7, 187, 167, 1) 100%
+  );
+  border-bottom: 3px white dashed;
 }
 .text-yellow {
   color: rgb(216, 180, 22) !important;
@@ -47,11 +71,31 @@ body {
 }
 
 .quantityBubble {
-  border: 2px solid white !important;
-  background-color: red;
+  background-color: rgb(255, 255, 255);
   height: 30px;
   width: 30px;
+  font-size: large;
+  font-weight: bold;
   text-align: center;
   border-radius: 50%;
-  color: white;
+  color: rgb(230, 66, 54);
+}
+
+#floatingCart {
+  font-size: 40px;
+  color: rgb(235, 202, 13) !important;
+  display: flex;
+  float: inline-end;
+}
+
+.fa-shopping-cart:hover {
+  font-size: larger;
+  cursor: pointer;
+  color: rgb(230, 230, 19) !important;
+}
+
+.floatContainer {
+  position: fixed;
+  left: 40px;
+  margin-top: 150px;
 }
