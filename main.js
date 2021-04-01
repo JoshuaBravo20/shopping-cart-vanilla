@@ -4,6 +4,8 @@ if (document.readyState == "loading") {
   loadRender();
 } // Arrancar la funcion principal cuando cargue la pagina
 
+let time = new Date(); // Hora
+let timeClock = document.querySelector(".time");
 let mainContainer = document.querySelector(".cart-layout"); // Layout principal
 let totalForCart = document.querySelector(".cartTotal"); // Campo del Total
 let total = 0; // Valor por defecto del total
@@ -72,6 +74,9 @@ function getAllMoviesData(arr = []) {
 }
 
 function loadRender() {
+  let currentTime = time.getHours() + ":" + time.getMinutes(); // Crear hora actual
+  timeClock.innerHTML = `<i class="far fa-clock"></i> ` + currentTime; // Insertar hora actual
+
   // Activar funciones de agregado y borrado
   let deleteButton = document.querySelectorAll(".deleteButton");
   deleteButton.forEach((v) => {
@@ -121,7 +126,8 @@ function removeItem(e) {
   $ ${Math.round(total * 100) / 100}
 </h4>`;
   currentItem.remove();
-  document.querySelector(".quantityBubble").innerHTML = cartList.childElementCount;
+  document.querySelector(".quantityBubble").innerHTML =
+    cartList.childElementCount;
 }
 
 function addItem(e) {
@@ -167,11 +173,18 @@ function addItem(e) {
   $ ${Math.round(total * 100) / 100}
 </h4>`;
 
-  document.querySelector(".quantityBubble").innerHTML = cartList.childElementCount;
-  document.querySelector(".quantityBubble").classList.add("animate__bounce", "animate__fast");
-  document.querySelector(".quantityBubble").addEventListener("animationend", () => {
-    document.querySelector(".quantityBubble").classList.remove("animate__bounce", "animate__fast");
-  })
+  document.querySelector(".quantityBubble").innerHTML =
+    cartList.childElementCount;
+  document
+    .querySelector(".quantityBubble")
+    .classList.add("animate__bounce", "animate__fast");
+  document
+    .querySelector(".quantityBubble")
+    .addEventListener("animationend", () => {
+      document
+        .querySelector(".quantityBubble")
+        .classList.remove("animate__bounce", "animate__fast");
+    });
 }
 
 getAllMoviesData(moviePool); // Llamar los datos de las peliculas a partir del Array creado
