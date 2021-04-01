@@ -4,8 +4,6 @@ if (document.readyState == "loading") {
   loadRender();
 } // Arrancar la funcion principal cuando cargue la pagina
 
-let time = new Date(); // Hora
-let timeClock = document.querySelector(".time");
 let mainContainer = document.querySelector(".cart-layout"); // Layout principal
 let totalForCart = document.querySelector(".cartTotal"); // Campo del Total
 let total = 0; // Valor por defecto del total
@@ -74,9 +72,6 @@ function getAllMoviesData(arr = []) {
 }
 
 function loadRender() {
-  let currentTime = time.getHours() + ":" + time.getMinutes(); // Crear hora actual
-  timeClock.innerHTML = `<i class="far fa-clock"></i> ` + currentTime; // Insertar hora actual
-
   // Activar funciones de agregado y borrado
   let deleteButton = document.querySelectorAll(".deleteButton");
   deleteButton.forEach((v) => {
