@@ -146,7 +146,7 @@ function addItem(e) {
     "align-items-center"
   );
   newAdded.innerHTML = `<div class="col-8">
-  <img class="imageIcon2" src="popcorn.png" />
+  <img class="imageIcon2" src="./assets/popcorn.png" />
   <div class="fw-bold"><strong>${title}</strong></div>
   ${description}
 </div>
@@ -184,7 +184,7 @@ function addItem(e) {
 
 getAllMoviesData(moviePool); // Llamar los datos de las peliculas a partir del Array creado
 
-let cashSound = new Audio("/cash.wav");
+let cashSound = new Audio("../assets/cash.wav");
 
 function playCashRegisterSound() {
   cashSound.play();
